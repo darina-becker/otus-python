@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Users
+{% endblock %}
+
+{% block body %}
+    <p style="margin-top: 1em; margin-left: 1em">
+        Users list:
+    </p>
+    {% if users %}
+    <ul>
+      {% for user in users %}
+        <ul>
+            {{ user.id }}
+            {{ user.name }}
+        </ul>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <h3>No users yet.</h3>
+  {% endif %}
+    <div style="margin-top: 1em; margin-left: 1em">
+        <a href="{{ url_for('homework_app.users_add_endpoint') }}">Add new user</a>
+    </div>
+{% endblock %}

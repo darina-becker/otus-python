@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+  pg:
+    image: postgres
+    environment:
+      POSTGRES_DB: hw06
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      # Change auth method from scram-sha-256 to md5 because the error occurs in libpq on Apple M1
+      POSTGRES_INITDB_ARGS: --auth-host=md5
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgres/data
+  
+  up:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      CONFIG_NAME: DevelopmentConfig
+      SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://admin:admin@pg/hw06
+    ports:
+      - "5433:5000"
+    depends_on:
+      - pg
+  
+  up-prod:
+    build:
+      context: .
+      dockerfile: Dockerbuild/Dockerfile
+    environment:
+      CONFIG_NAME: ProductionConfig
+      SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://admin:admin@pg/hw06
+    ports:
+      - "5080:80"
+    depends_on:
+      - pg
+
+
+volumes:
+  pg-data:

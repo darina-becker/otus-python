@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Users
+{% endblock %}
+
+{% block body %}
+    <p style="margin-top: 1em; margin-left: 1em">
+        Posts list:
+    </p>
+    {% if posts %}
+    <ul>
+      {% for post in posts %}
+        <ul>
+            {{ post.id }}
+            {{ post.title }}
+        </ul>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <h3>No posts yet.</h3>
+  {% endif %}
+    <div style="margin-top: 1em; margin-left: 1em">
+        <a href="{{ url_for('homework_app.posts_add_endpoint') }}">Add new post</a>
+    </div>
+{% endblock %}
