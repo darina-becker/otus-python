@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ApkStore</title>
+</head>
+<body>
+    <div>
+        <h1>Hello there!</h1>
+    </div>
+    <div>
+        <ul>
+            {% for app in all_apps %}
+            <li>{{ app }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

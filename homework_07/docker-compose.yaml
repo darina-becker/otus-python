@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  pgr:
+    image: postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      # Change auth method from scram-sha-256 to md5 because the error occurs in libpq on Apple M1
+#      POSTGRES_INITDB_ARGS: --auth-host=md5
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgr-data:/var/lib/postgres/data
+
+volumes:
+  pgr-data:
