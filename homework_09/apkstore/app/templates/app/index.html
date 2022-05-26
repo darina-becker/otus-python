@@ -1,0 +1,11 @@
+{% extends 'app/base.html' %}
+
+{% block main_content %}
+    <h1>Hello {{ user }}!</h1>
+    <p>
+        <a href="{% url 'apps:create' %}">new application</a>
+    </p>
+    <ul>
+        <a href="{% url 'apps:list' %}">see apps catalog</a>
+    </ul>
+{% endblock %}

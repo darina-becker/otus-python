@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+
+{% block main_content %}
+    <div>
+        <ul>
+        <li>
+            {{ app.name }}
+        </li>
+        </ul>
+        <p>
+            category: {{ app.kind }}
+        </p>
+        <p>
+            Description:<br>
+            {{ app.desc }}
+        </p>
+    </div>
+{% endblock %}
